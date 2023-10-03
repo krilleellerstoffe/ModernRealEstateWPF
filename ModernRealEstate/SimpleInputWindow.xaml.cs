@@ -20,7 +20,7 @@ namespace ModernRealEstate
 
     public partial class SimpleInputWindow : Window
     {
-        private AddEditWindow? parentWindow;
+        private AddEditWindow? _parentWindow;
 
         public SimpleInputWindow()
         {
@@ -28,17 +28,17 @@ namespace ModernRealEstate
         }
         public SimpleInputWindow(AddEditWindow parentWindow)
         {
-            this.parentWindow = parentWindow;
+            _parentWindow = parentWindow;
             InitializeComponent();
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             //only can call addPicure() if parent window exists
-            if (parentWindow == null) return;
+            if (_parentWindow == null) return;
             string url = txtURL.Text;
             //check URL worked ok
-            if (parentWindow.AddPicture(url)) 
+            if (_parentWindow.AddPicture(url)) 
             {
                 this.Close();
             }

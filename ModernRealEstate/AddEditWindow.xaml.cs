@@ -46,6 +46,8 @@ namespace ModernRealEstate
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             //open new dialog to edit details
+            DetailsWindow detailsWindow = new DetailsWindow(this);
+            detailsWindow.Show();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -77,7 +79,8 @@ namespace ModernRealEstate
             //display picture
             try
             {
-                ImgBox.Source = new BitmapImage(new Uri(filename));
+                imgBox.Source = new BitmapImage(new Uri(filename));
+                //ask BLL to add picture to object
                 return true;
             }          
             catch (Exception ex)
@@ -92,7 +95,7 @@ namespace ModernRealEstate
         private void btnRemovePicture_Click(object sender, RoutedEventArgs e)
         {
             //reset to default image
-            ImgBox.Source = new BitmapImage(new Uri("/Resources/logo.png"));
+            imgBox.Source = null;
         }
     }
 }
