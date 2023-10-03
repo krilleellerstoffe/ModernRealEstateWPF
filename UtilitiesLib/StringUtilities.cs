@@ -26,4 +26,9 @@ public static class StringUtilities
 
         return (min <= result && result <= max) ? result : throw new Exception("Integer outside of range");
     }
+
+    public static bool CheckStringIsValidURL(string str)
+    {
+        return true;
+    }
 }

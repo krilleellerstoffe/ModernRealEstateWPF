@@ -16,7 +16,8 @@ namespace ModernRealEstate
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             //open add/edit window
-            MessageBox.Show(sender.ToString());
+            AddEditWindow addEditWindow = new AddEditWindow();
+            addEditWindow.ShowDialog();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -37,13 +38,13 @@ namespace ModernRealEstate
         }
         private void updateList()
         {
-            //get new list from BLL
-            //send filter values
+            //get new list from BLL using filter values
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //enable/disable buttons
+            //update picture box
         }
     }
 }

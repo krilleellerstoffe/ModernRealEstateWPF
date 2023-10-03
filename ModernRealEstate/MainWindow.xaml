@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModernRealEstate"
         mc:Ignorable="d"
-        Title="Modern Real Estate by Christopher O'Driscoll" Height="500" Width="1000" MinWidth="1000" MinHeight="500" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="CanMinimize" Icon="/logo.png">
+        Title="Modern Real Estate by Christopher O'Driscoll" Height="500" Width="1000" MinWidth="1000" MinHeight="500" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="CanMinimize">
     <Grid Background="#FFF0F0F0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -18,38 +18,41 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Image x:Name="ImgBox" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Grid.Row="1" VerticalAlignment="Center" Source="/Resources/logo.png" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.RowSpan="1">
+        <Image x:Name="ImgBox" Grid.Column="1" Grid.Row="1" Source="/logo.png" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <Image.Effect>
                 <DropShadowEffect Color="#FF3D3D3D"/>
             </Image.Effect>
         </Image>
         <Grid Grid.Column="2" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="10" Grid.Row="1" Margin="10,0,0,10" SelectionChanged="ListBox_SelectionChanged"/>
+            <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="13" Grid.Row="1" Margin="10,10,0,10" SelectionChanged="ListBox_SelectionChanged"/>
             <CheckBox x:Name="chBoxResidential" Grid.Column="1" Content="Residential" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
             <CheckBox x:Name="chBoxCommercial" Grid.Column="1" Content="Commercial" HorizontalAlignment="Left" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
             <CheckBox x:Name="chBoxInstitutions" Grid.Column="1" Content="Intitutions" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
-            <Button x:Name="btnClose" Grid.Column="1" Content="Close" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" MinWidth="100" MinHeight="30" Click="btnClose_Click"/>
-            <Button x:Name="btnDelete" Grid.Column="1" Content="Delete Object" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" MinWidth="100" MinHeight="30" Click="btnDelete_Click"/>
-            <Button x:Name="btnEdit" Grid.Column="1" Content="Edit Object" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" MinWidth="100" MinHeight="30" Click="btnAdd_Click"/>
-            <Button x:Name="btnAdd" Grid.Column="1" Content="Add New Object" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" MinWidth="100" MinHeight="30" Click="btnAdd_Click"/>
-            <Label Content="Estate Objects" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <Button x:Name="btnClose" Grid.Column="1" Content="Close" Grid.Row="12" MinWidth="100" MinHeight="30" Click="btnClose_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
+            <Button x:Name="btnDelete" Grid.Column="1" Content="Delete Object" Grid.Row="10" MinWidth="100" MinHeight="30" Click="btnDelete_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
+            <Button x:Name="btnEdit" Grid.Column="1" Content="Edit Object" Grid.Row="8" MinWidth="100" MinHeight="30" Click="btnAdd_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
+            <Button x:Name="btnAdd" Grid.Column="1" Content="Add New Object" Grid.Row="6" MinWidth="100" MinHeight="30" Click="btnAdd_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
+            <Label Content="Estate Objects" Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <Label Grid.Column="1" Content="Filter" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Grid.Row="1"/>
         </Grid>
 
