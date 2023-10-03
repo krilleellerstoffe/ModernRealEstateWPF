@@ -30,5 +30,10 @@ namespace ModernRealEstate
             InitializeComponent();
         }
 
+        private void btnBuyerSeller_Click(object sender, RoutedEventArgs e)
+        {
+            BuyerSellerWindow window = new BuyerSellerWindow();
+            window.Show();
+        }
     }
 }

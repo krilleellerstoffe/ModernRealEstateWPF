@@ -13,6 +13,7 @@ namespace ModernRealEstateBLL
         private string firstName;
         private string lastName;
         private Address address;
+        private Payment paymentDetails;
         private PersonTypes personType;
 
         public Person() { }
@@ -46,6 +47,7 @@ namespace ModernRealEstateBLL
         public string LastName { get => lastName; set => lastName = value; }
         public PersonTypes PersonType { get => personType; set => personType = value; }
         public Address Address { get => address; set => address = value; }
+        public Payment PaymentDetails { get => paymentDetails; set => paymentDetails = value; }
 
         public override string ToString()
         {
