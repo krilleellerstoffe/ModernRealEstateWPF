@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BLL\ModernRealEstateBLL.csproj" />
+    <ProjectReference Include="..\ModernRealEstateBLL\ModernRealEstateBLL.csproj" />
+    <ProjectReference Include="..\UtilitiesLib\UtilitiesLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

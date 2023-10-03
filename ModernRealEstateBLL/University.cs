@@ -1,5 +1,7 @@
 ﻿// Christopher O'Driscoll
 
+using UtilitiesLib;
+
 namespace ModernRealEstateBLL
 {
     [Serializable]
