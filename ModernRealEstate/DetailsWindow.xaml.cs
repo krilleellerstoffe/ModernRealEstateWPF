@@ -30,7 +30,8 @@ namespace ModernRealEstate
 
         public Seller? Seller
         {
-            get => _seller; set
+            get => _seller; 
+            set
             {
                 _seller = value;
                 txtBlSeller.Text = ((Seller) value).ToString();
@@ -39,7 +40,8 @@ namespace ModernRealEstate
 
         public Buyer? Buyer
         {
-            get => _buyer; set
+            get => _buyer; 
+            set
             {
                 _buyer = value;
                 txtBlBuyer.Text = ((Buyer) value).ToString();
@@ -77,8 +79,8 @@ namespace ModernRealEstate
                 cBoxOwnership.SelectedItem = ((Residential)_currentEstateObject).Ownership;
                 cBoxRooms.SelectedItem = ((Residential)_currentEstateObject).Rooms;
             }
-            Buyer = estate.Buyer;
-            Seller = estate.Seller;
+            if (estate.Buyer != null) Buyer = estate.Buyer;
+            if (estate.Seller != null) Seller = estate.Seller;
         }
 
         private void SetupComboBoxes()
@@ -222,15 +224,19 @@ namespace ModernRealEstate
                     _newEstateObject = new Shop();
                     break;
                 case EstateTypes.Warehouse:
-                    _newEstateObject = new Warehouse();
-                    break;
                 default:
-                    //some error handling
+                    _newEstateObject = new Warehouse();
                     break;
             }
             //set address and size regardless of estate type
-            _newEstateObject.Address = createAddress();
+            _newEstateObject.Address = CreateAddress();
             _newEstateObject.Size = int.Parse(txtSize.Text);
+            //add ownership type and room count if residential
+            if(_newEstateObject is Residential)
+            {
+                ((Residential)_newEstateObject).Ownership = (Ownership)cBoxOwnership.SelectedItem;
+                ((Residential)_newEstateObject).Rooms = (string)cBoxRooms.SelectedItem;
+            }
             //keep old ID if updating details on existing estate object
             if (_currentEstateObject != null)
             {
@@ -238,7 +244,7 @@ namespace ModernRealEstate
             }
         }
         //creates an address object from the user's inputs
-        private Address createAddress()
+        private Address CreateAddress()
         {
             return new Address(
                 txtLine1.Text,

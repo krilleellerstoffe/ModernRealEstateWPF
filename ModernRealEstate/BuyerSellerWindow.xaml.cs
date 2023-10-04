@@ -45,25 +45,23 @@ namespace ModernRealEstate
         private void SetPayment(Payment payment)
         {
             if (payment == null) {
-                ControlPaymentType(PaymentTypes.None);
+                SetControlsForPaymentType(PaymentTypes.None);
                 return;
             }
+            //regardless of payment type, set combo box and account name
+            cBoxPayment.SelectedItem = payment.PaymentType;
             txtAccName.Text = payment.PaymentName;
-            if (payment.PaymentType == PaymentTypes.Bank)
-            {
-                txtAccNum.Text = payment.PaymentDetails;
-            }
-            else
-            {
-                txtAccEmail.Text = payment.PaymentDetails;
-            }                     
-            ControlPaymentType(payment.PaymentType);
+            //choose between email and account for details
+            if (payment.PaymentType == PaymentTypes.Bank) txtAccNum.Text = payment.PaymentDetails;
+            else txtAccEmail.Text = payment.PaymentDetails;
+            //update controls visibility
+            SetControlsForPaymentType(payment.PaymentType);
         }
         private void cBoxPayment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ControlPaymentType((PaymentTypes)cBoxPayment.SelectedItem);
+            SetControlsForPaymentType((PaymentTypes)cBoxPayment.SelectedItem);
         }
-        private void ControlPaymentType(PaymentTypes paymentType)
+        private void SetControlsForPaymentType(PaymentTypes paymentType)
         {
             switch (paymentType)
             {

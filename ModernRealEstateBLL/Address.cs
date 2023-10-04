@@ -33,11 +33,11 @@ namespace ModernRealEstateBLL
         public override string ToString()
         {
             return
-                "\n " + line1 +
+                line1 +
                 ", " + line2 +
-                "\n " + city +
-                "\n " + postcode +
-                "\n " + country;
+                "\n" + city +
+                "\n" + postcode +
+                "\n" + country;
         }
     }
 }

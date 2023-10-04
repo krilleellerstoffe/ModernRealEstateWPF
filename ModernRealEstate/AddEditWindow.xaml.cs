@@ -28,7 +28,7 @@ namespace ModernRealEstate
         private MainWindow _mainWindow;
         private Estate? _estate;
         private string? _imageSource;
-        private ImageSource _logo;
+        private ImageSource _defaultImage;
         public Estate Estate
         {
             get => _estate; set
@@ -43,7 +43,7 @@ namespace ModernRealEstate
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            _logo = imgBox.Source.Clone();
+            _defaultImage = imgBox.Source.Clone();
         }
         public AddEditWindow(Estate estate, MainWindow mainWindow) : this(mainWindow)
         {
@@ -65,6 +65,7 @@ namespace ModernRealEstate
                 //retrieve pictures from estate object:
                 if (_estate.ImageSource != null)
                 {
+                    _imageSource = _estate.ImageSource;
                     imgBox.Source = new BitmapImage(new Uri(_estate.ImageSource));
                 }
             }
@@ -89,8 +90,9 @@ namespace ModernRealEstate
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            //open new dialog to edit details
-            DetailsWindow detailsWindow = new DetailsWindow(this);
+            //open new dialog to edit details, include estate object if exists
+
+            DetailsWindow detailsWindow = (_estate == null) ? new DetailsWindow(this): new DetailsWindow(this, _estate);
             detailsWindow.Show();
         }
 
@@ -98,10 +100,8 @@ namespace ModernRealEstate
         {            
             if (_estate != null)
             {
-                if (_imageSource != null)
-                {
-                    _estate.ImageSource = _imageSource;
-                }
+                _estate.ImageSource = _imageSource;
+                
                 _mainWindow.AddEstate(_estate);
                 this.Close();
                 return;
@@ -136,7 +136,7 @@ namespace ModernRealEstate
             try
             {
                 imgBox.Source = new BitmapImage(new Uri(filename));
-                ImageSource = filename;
+                _imageSource = filename;
                 return true;
             }          
             catch (Exception ex)
@@ -154,8 +154,8 @@ namespace ModernRealEstate
         }
         private void RemovePicture()
         {
-            ImageSource = null;
-            imgBox.Source = _logo;
+            _imageSource = null;
+            imgBox.Source = _defaultImage;
         }
     }
 }
