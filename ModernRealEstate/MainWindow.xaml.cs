@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ModernRealEstate
@@ -19,12 +20,14 @@ namespace ModernRealEstate
         private Estate _selectedEstate;
         private string? _filePath;
         private Dictionary<EstateTypes, bool> _filter;
+        private ImageSource _logo;
 
         public MainWindow()
         {
             InitializeComponent();
             _manager = new EstateManager();
             _filter = new Dictionary<EstateTypes, bool>();
+            _logo = imgBox.Source.Clone();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -71,6 +74,7 @@ namespace ModernRealEstate
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            _selectedEstate = (Estate)lstEstates.SelectedItem;
             UpdatePicture();
             //enable/disable buttons
             //update picture box
@@ -84,18 +88,18 @@ namespace ModernRealEstate
                 btnDelete.IsEnabled = true;
                 try
                 {
-                    ImgBox.Source = new BitmapImage(new Uri(_selectedEstate.ImageSource));
+                    imgBox.Source = new BitmapImage(new Uri(_selectedEstate.ImageSource));
                 }
                 catch (Exception e)
                 {
-                    ImgBox.Source = null;
+                    imgBox.Source = _logo;
                 }
             }
             else
             {
                 btnEdit.IsEnabled = false;
                 btnDelete.IsEnabled = false;
-                ImgBox.Source = null;
+                imgBox.Source = _logo;
             }
 
         }

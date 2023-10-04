@@ -12,26 +12,26 @@ namespace ModernRealEstateBLL
         }
         public override string[] Details()
         {
-            string[] details = new string[6];
-            details[0] = ("\nID: " + ID);
-            details[1] = ("\n" + Address);
-            details[2] = ("\nSize: " + Size + " square metres");
-            details[3] = ("\nInstitutional Property Type: " + EstateType);
+            string[] details = new string[5];
+            details[0] = ("Institutional Property Type: " + EstateType);
+            details[1] = ("Address:\n" + Address);
+            details[2] = ("Size: " + Size + " square metres");
+
             if (Seller != null)
             {
-                details[4] = ("\nSeller: " + Seller);
+                details[3] = ("Seller: " + Seller);
             }
             else
             {
-                details[4] = "No Seller";
+                details[3] = "No Seller";
             }
             if (Buyer != null)
             {
-                details[5] = ("\nBuyer: " + Buyer);
+                details[4] = ("Buyer: " + Buyer);
             }
             else
             {
-                details[5] = "No Buyer";
+                details[4] = "No Buyer";
             }
             return details;
         }

@@ -13,7 +13,7 @@ namespace ModernRealEstateBLL
         private string firstName;
         private string lastName;
         private Address address;
-        private Payment paymentDetails;
+        private Payment? paymentDetails;
         private PersonTypes personType;
 
         public Person() { }

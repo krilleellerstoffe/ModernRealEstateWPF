@@ -28,7 +28,15 @@ namespace ModernRealEstate
         private MainWindow _mainWindow;
         private Estate? _estate;
         private string? _imageSource;
-        public Estate Estate { get => _estate; set => _estate = value; }
+        private ImageSource _logo;
+        public Estate Estate
+        {
+            get => _estate; set
+            {
+                _estate = value;
+                UpdateDetails();
+            }
+        }
         public string? ImageSource { get => _imageSource; set => _imageSource = value; }
 
         public AddEditWindow(MainWindow mainWindow)
@@ -52,7 +60,7 @@ namespace ModernRealEstate
                 string[] estateDetails = _estate.Details();
                 foreach (string s in estateDetails)
                 {
-                    lstDetails.Items.Add(s);
+                    if (!string.IsNullOrEmpty(s)) lstDetails.Items.Add(s);
                 }
                 //retrieve pictures from estate object:
                 if (_estate.ImageSource != null)
@@ -69,7 +77,7 @@ namespace ModernRealEstate
             //close this window and return to main menu
             this.Close();
         }
-        private ImageSource _logo;
+
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //confirm delete

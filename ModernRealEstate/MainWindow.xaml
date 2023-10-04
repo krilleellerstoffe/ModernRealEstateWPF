@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Image x:Name="ImgBox" Grid.Column="1" Grid.Row="1" Source="/logo.png" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <Image x:Name="imgBox" Grid.Column="1" Grid.Row="1" Source="/logo.png" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <Image.Effect>
                 <DropShadowEffect Color="#FF3D3D3D"/>
             </Image.Effect>

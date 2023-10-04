@@ -22,14 +22,18 @@ namespace ModernRealEstate
     /// </summary>
     public partial class BuyerSellerWindow : Window
     {
-        public BuyerSellerWindow()
+        private Person _person;
+        private DetailsWindow _parent;
+        public BuyerSellerWindow(DetailsWindow parentWindow)
         {
             InitializeComponent();
+            _parent = parentWindow;
             cBoxPayment.ItemsSource = Enum.GetValues(typeof(PaymentTypes));
             cBoxPayment.SelectedIndex = 0;
         }
-        public BuyerSellerWindow(Person person) : this()
+        public BuyerSellerWindow(DetailsWindow parentWindow, Person person) : this(parentWindow)
         {
+            _person = person;
             SetName(person);
             SetPayment(person.PaymentDetails);
         }
@@ -96,13 +100,53 @@ namespace ModernRealEstate
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //check buyer/seller
+            SaveDetailsToPerson();
+            if (_person is Buyer)
+            {
+                _parent.Buyer = _person as Buyer;
+            }
+            else
+            {
+                _parent.Seller = _person as Seller;
+            }
+            this.Close();
             //save person in object and return to parent window
         }
 
-        internal void SetPerson(Person? person)
+        private void SaveDetailsToPerson()
         {
-            if (person == null) { }
-            throw new NotImplementedException();
+            _person.FirstName = txtFirstName.Text;
+            _person.LastName = txtLastName.Text;
+            _person.PaymentDetails = CreatePaymentDetails();
+            
+        }
+
+        private Payment CreatePaymentDetails()
+        {
+            Payment payment;
+            switch (cBoxPayment.SelectedItem)
+            {
+                case PaymentTypes.PayPal:
+                    payment = new Paypal();
+                    payment.PaymentDetails = txtAccEmail.Text;
+                    break;
+                case PaymentTypes.Western_Union:
+                    payment = new WesternUnion();
+                    payment.PaymentDetails = txtAccEmail.Text;
+                    break;
+                case PaymentTypes.Bank:
+                    payment = new Bank();
+                    payment.PaymentDetails = txtAccNum.Text;
+                    break;
+                default:
+                    payment = null;
+                    break;
+            }
+            if (payment != null)
+            {
+                payment.PaymentName = txtAccName.Text;
+            }
+            return payment;
         }
     }
 }

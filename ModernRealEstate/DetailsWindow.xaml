@@ -26,10 +26,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Address" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
-        <Label Content="Line 1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <Label Content="Line 2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
-        <Label Content="City" HorizontalAlignment="Left" Margin="10,0,0,4" Grid.Row="3" VerticalAlignment="Bottom"/>
-        <Label Content="Postcode" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center"/>
+        <Label x:Name="lblLine1" Content="Line 1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label x:Name="lblLine2" Content="Line 2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+        <Label x:Name="lblCity" Content="City" HorizontalAlignment="Left" Margin="10,0,0,4" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblPost" Content="Postcode" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center"/>
         <ComboBox x:Name="cBoxCountries" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" VerticalAlignment="Center" Width="160" Grid.RowSpan="1" Grid.ColumnSpan="1" SelectedIndex="0" TabIndex="4"/>
         <ComboBox x:Name="cBoxType" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" VerticalAlignment="Center" Width="160" SelectedIndex="0" SelectionChanged="cBoxType_SelectionChanged" TabIndex="5"/>
         <ComboBox x:Name="cBoxOwnership" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Center" Width="140" SelectedIndex="0" TabIndex="6"/>
@@ -39,22 +39,22 @@
         <TextBox x:Name="txtPostcode" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" Width="170" TabIndex="3"/>
         <Label Grid.Column="1" Content="Object Type" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
         <Label x:Name="lblOwnership" Grid.Column="1" Content="Ownership" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
-        <Label Grid.Column="1" Content="Size" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center"/>
+        <Label x:Name="lblSize" Grid.Column="1" Content="Size" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center"/>
         <TextBox x:Name="txtSize" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="70" TabIndex="7"/>
         <Label x:Name="lblRooms" Grid.Column="1" Content="Rooms" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center"/>
         <ComboBox x:Name="cBoxRooms" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" VerticalAlignment="Center" Width="60" SelectedIndex="0" TabIndex="8"/>
         <Label Content="Seller / Buyer details" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="6" VerticalAlignment="Center" FontWeight="Bold"/>
-        <Button Grid.Column="1" Content="Cancel" HorizontalAlignment="Right" Grid.Row="9" VerticalAlignment="Bottom" Grid.RowSpan="2" Margin="0,0,10,0" Width="120" Height="50" TabIndex="12"/>
-        <Button Grid.Column="1" Content="Save details" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="6" VerticalAlignment="Bottom" Grid.RowSpan="3" Width="120" Height="80" TabIndex="11"/>
+        <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Content="Cancel" HorizontalAlignment="Right" Grid.Row="9" VerticalAlignment="Bottom" Grid.RowSpan="2" Margin="0,0,10,0" Width="120" Height="50"/>
+        <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="1" Content="Save details" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="6" VerticalAlignment="Bottom" Grid.RowSpan="3" Width="120" Height="80" TabIndex="11"/>
         <Label Grid.Column="1" Content="Characteristics" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
         <Label Content="Buyer" HorizontalAlignment="Left" Margin="10,7,0,0" Grid.Row="9" VerticalAlignment="Center"/>
         <Label Content="Seller" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center"/>
         <Button x:Name="btnBuyer" Content="Change Buyer details" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="10" VerticalAlignment="Bottom" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" Height="30" Click="btnBuyer_Click" TabIndex="10"/>
         <Button x:Name="btnSeller" Content="Change Seller details" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="8" VerticalAlignment="Bottom" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" Height="30" Click="btnSeller_Click" TabIndex="9"/>
-        <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" FontWeight="Bold"/>
+        <TextBlock x:Name="txtBlSeller" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" FontWeight="Bold"/>
+        <TextBlock x:Name="txtBlBuyer" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" Width="160" FontWeight="Bold"/>
         <Label Content="Country" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center"/>
-        <Image Grid.RowSpan="5" Grid.Column="1" Margin="10,0,0,5" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="140" Height="140" Source="/logo.png">
+        <Image x:Name="imgBox" Grid.RowSpan="5" Grid.Column="1" Margin="10,0,0,5" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="140" Height="140" Source="/logo.png">
             <Image.Effect>
                 <DropShadowEffect/>
             </Image.Effect>

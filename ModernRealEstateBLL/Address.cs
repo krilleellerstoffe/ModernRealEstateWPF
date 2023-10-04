@@ -34,7 +34,7 @@ namespace ModernRealEstateBLL
         {
             return
                 "\n " + line1 +
-                "\n " + line2 +
+                ", " + line2 +
                 "\n " + city +
                 "\n " + postcode +
                 "\n " + country;
