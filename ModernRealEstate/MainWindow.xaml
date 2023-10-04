@@ -44,13 +44,13 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="13" Grid.Row="1" Margin="10,10,0,10" SelectionChanged="ListBox_SelectionChanged"/>
-            <CheckBox x:Name="chBoxResidential" Grid.Column="1" Content="Residential" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
-            <CheckBox x:Name="chBoxCommercial" Grid.Column="1" Content="Commercial" HorizontalAlignment="Left" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
-            <CheckBox x:Name="chBoxInstitutions" Grid.Column="1" Content="Intitutions" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBox_Click"/>
+            <ListBox x:Name="lstEstates" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="13" Grid.Row="1" Margin="10,10,0,10" SelectionChanged="ListBox_SelectionChanged"/>
+            <CheckBox x:Name="chBoxResidential" Grid.Column="1" Content="Residential" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBoxResidential_Click"/>
+            <CheckBox x:Name="chBoxCommercial" Grid.Column="1" Content="Commercial" HorizontalAlignment="Left" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBoxCommercial_Click"/>
+            <CheckBox x:Name="chBoxInstitutions" Grid.Column="1" Content="Intitutions" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chBoxInstitutions_Click"/>
             <Button x:Name="btnClose" Grid.Column="1" Content="Close" Grid.Row="12" MinWidth="100" MinHeight="30" Click="btnClose_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
-            <Button x:Name="btnDelete" Grid.Column="1" Content="Delete Object" Grid.Row="10" MinWidth="100" MinHeight="30" Click="btnDelete_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
-            <Button x:Name="btnEdit" Grid.Column="1" Content="Edit Object" Grid.Row="8" MinWidth="100" MinHeight="30" Click="btnAdd_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
+            <Button x:Name="btnDelete" Grid.Column="1" Content="Delete Object" Grid.Row="10" MinWidth="100" MinHeight="30" Click="btnDelete_Click" Grid.RowSpan="2" Margin="10,10,10,10" IsEnabled="False"/>
+            <Button x:Name="btnEdit" Grid.Column="1" Content="Edit Object" Grid.Row="8" MinWidth="100" MinHeight="30" Click="btnEdit_Click" Grid.RowSpan="2" Margin="10,10,10,10" IsEnabled="False"/>
             <Button x:Name="btnAdd" Grid.Column="1" Content="Add New Object" Grid.Row="6" MinWidth="100" MinHeight="30" Click="btnAdd_Click" Grid.RowSpan="2" Margin="10,10,10,10"/>
             <Label Content="Estate Objects" Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <Label Grid.Column="1" Content="Filter" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Grid.Row="1"/>

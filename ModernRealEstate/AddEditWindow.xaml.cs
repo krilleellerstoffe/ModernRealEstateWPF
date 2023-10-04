@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using ModernRealEstateBLL;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,9 +24,20 @@ namespace ModernRealEstate
     /// </summary>
     public partial class AddEditWindow : Window
     {
-        public AddEditWindow()
+        private MainWindow _mainWindow;
+        private Estate _estate;
+        private string? _imageSource;
+        public Estate Estate { get => _estate; set => _estate = value; }
+        public string? ImageSource { get => _imageSource; set => _imageSource = value; }
+
+        public AddEditWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+        }
+        public AddEditWindow(Estate estate, MainWindow mainWindow) : this(mainWindow)
+        {
+            _estate = estate;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -51,9 +63,15 @@ namespace ModernRealEstate
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            //ask BLL to create new object
-            //get parent window to update lists
+        {            
+            if (_estate != null)
+            {
+                if (_imageSource != null)
+                {
+                    _estate.ImageSource = _imageSource;
+                }
+            }
+            _mainWindow.AddEstate(_estate);
         }
 
         private void btnAddPicture_Click(object sender, RoutedEventArgs e)
@@ -80,7 +98,7 @@ namespace ModernRealEstate
             try
             {
                 imgBox.Source = new BitmapImage(new Uri(filename));
-                //ask BLL to add picture to object
+                ImageSource = filename;
                 return true;
             }          
             catch (Exception ex)
@@ -95,6 +113,7 @@ namespace ModernRealEstate
         private void btnRemovePicture_Click(object sender, RoutedEventArgs e)
         {
             //reset to default image
+            ImageSource = null;
             imgBox.Source = null;
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModernRealEstate"
         mc:Ignorable="d"
-        Title="SimpleInputWindow" WindowStartupLocation="CenterScreen" Height="200" Width="300">
+        Title="Modern Real Estate - Download Image" WindowStartupLocation="CenterScreen" Height="200" Width="300">
     <Grid Background="#FFF0F0F0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

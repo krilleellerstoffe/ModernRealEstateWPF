@@ -12,8 +12,7 @@ namespace ModernRealEstateBLL
         Buyer Buyer { get; set; }
         Seller Seller { get; set; }
         Payment Payment { get; set; }
-
-        string[] PictureFiles { get; set; }
+        string ImageSource { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@ namespace ModernRealEstateBLL
         private Seller seller;
         private Payment payment;
         private EstateTypes estateType;
-        private string[] pictureFiles;
+        private string imageSource;
         private int coverPicture;
 
         protected Estate()
@@ -39,7 +39,7 @@ namespace ModernRealEstateBLL
         public int Size { get => size; set => size = value; }
         //following attributes can be empty
         [XmlElement(IsNullable = false)]
-        public string[] PictureFiles { get => pictureFiles; set => pictureFiles = value; }
+        public string ImageSource { get => imageSource; set => imageSource = value; }
         [XmlElement(IsNullable = false)]
         public int CoverPicture { get => coverPicture; set => coverPicture = value; }
         [XmlElement(IsNullable = false)]

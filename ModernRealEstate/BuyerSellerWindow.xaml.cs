@@ -35,8 +35,8 @@ namespace ModernRealEstate
         }
         private void SetName(Person person)
         {
-            txtFirstName.Text = person.FirstName;
-            txtLastName.Text = person.LastName;
+            txtFirstName.Text = string.IsNullOrEmpty(person.FirstName) ? "": person.FirstName;
+            txtLastName.Text = string.IsNullOrEmpty(person.LastName) ? "" : person.LastName;
         }
         private void SetPayment(Payment payment)
         {
@@ -65,28 +65,26 @@ namespace ModernRealEstate
             {
                 case PaymentTypes.PayPal:
                 case PaymentTypes.Western_Union:
-                    EnableControls(true, false, true);
+                    PaymentControlsVisibility(true, false, true);
                     break;
                 case PaymentTypes.Bank:
-                    EnableControls(true, true, false);
-                    break;
-                case PaymentTypes.None:
-                    EnableControls(false, false, false);
+                    PaymentControlsVisibility(true, true, false);
                     break;
                 default:
+                    PaymentControlsVisibility(false, false, false);
                     break;
             }
         }
-        private void EnableControls(bool accName, bool accNumber, bool accEmail)
+        private void PaymentControlsVisibility(bool accName, bool accNumber, bool accEmail)
         {
-            lblAccName.IsEnabled = accName;
-            txtAccName.IsEnabled = accName;
+            lblAccName.Visibility = accName ? Visibility.Visible: Visibility.Collapsed;
+            txtAccName.Visibility = accName ? Visibility.Visible : Visibility.Collapsed;
 
-            lblAccNum.IsEnabled = accNumber;
-            txtAccNum.IsEnabled = accNumber;
+            lblAccNum.Visibility = accNumber ? Visibility.Visible : Visibility.Collapsed;
+            txtAccNum.Visibility = accNumber ? Visibility.Visible : Visibility.Collapsed;
 
-            lblAccEmail.IsEnabled = accEmail;
-            txtAccEmail.IsEnabled = accEmail;
+            lblAccEmail.Visibility = accEmail ? Visibility.Visible : Visibility.Collapsed;
+            txtAccEmail.Visibility = accEmail ? Visibility.Visible : Visibility.Collapsed;
         }
 
 
@@ -101,6 +99,10 @@ namespace ModernRealEstate
             //save person in object and return to parent window
         }
 
-
+        internal void SetPerson(Person? person)
+        {
+            if (person == null) { }
+            throw new NotImplementedException();
+        }
     }
 }

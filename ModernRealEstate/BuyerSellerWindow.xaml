@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModernRealEstate"
         mc:Ignorable="d"
-        Title="Modern Real Estate by Christopher O'Driscoll - Edit Buyer / Seller Details" WindowStartupLocation="CenterScreen" Height="250" Width="350">
+        Title="Modern Real Estate - Edit Buyer / Seller Details" WindowStartupLocation="CenterScreen" Height="250" Width="350">
     <Grid Background="#FFF0F0F0">
         <Grid.RowDefinitions>
             <RowDefinition/>

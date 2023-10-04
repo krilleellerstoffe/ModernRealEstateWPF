@@ -6,9 +6,9 @@ namespace ModernRealEstateBLL
     {
         Apartment,
         Townhouse,
+        Villa,
         Shop,
         Warehouse,
-        Villa,
         School,
         Hospital,
         University
