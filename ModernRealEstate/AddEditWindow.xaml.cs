@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ModernRealEstate
@@ -25,7 +26,7 @@ namespace ModernRealEstate
     public partial class AddEditWindow : Window
     {
         private MainWindow _mainWindow;
-        private Estate _estate;
+        private Estate? _estate;
         private string? _imageSource;
         public Estate Estate { get => _estate; set => _estate = value; }
         public string? ImageSource { get => _imageSource; set => _imageSource = value; }
@@ -34,10 +35,31 @@ namespace ModernRealEstate
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+            _logo = imgBox.Source.Clone();
         }
         public AddEditWindow(Estate estate, MainWindow mainWindow) : this(mainWindow)
         {
             _estate = estate;
+            UpdateDetails();
+        }
+
+        public void UpdateDetails()
+        {
+            //first clear current details
+            lstDetails.Items.Clear();
+            if (_estate != null)
+            {
+                string[] estateDetails = _estate.Details();
+                foreach (string s in estateDetails)
+                {
+                    lstDetails.Items.Add(s);
+                }
+                //retrieve pictures from estate object:
+                if (_estate.ImageSource != null)
+                {
+                    imgBox.Source = new BitmapImage(new Uri(_estate.ImageSource));
+                }
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -47,11 +69,13 @@ namespace ModernRealEstate
             //close this window and return to main menu
             this.Close();
         }
-
+        private ImageSource _logo;
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //confirm delete
-
+            MessageBox.Show("Are you sure? All fields will be reset", "Confirm reset", MessageBoxButton.OK);
+            lstDetails.Items.Clear();
+            RemovePicture();
             //clear all fields
         }
 
@@ -70,8 +94,14 @@ namespace ModernRealEstate
                 {
                     _estate.ImageSource = _imageSource;
                 }
+                _mainWindow.AddEstate(_estate);
+                this.Close();
+                return;
             }
-            _mainWindow.AddEstate(_estate);
+            if (MessageBox.Show("No details saved, return to Main Menu?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void btnAddPicture_Click(object sender, RoutedEventArgs e)
@@ -112,9 +142,12 @@ namespace ModernRealEstate
 
         private void btnRemovePicture_Click(object sender, RoutedEventArgs e)
         {
-            //reset to default image
+            RemovePicture();
+        }
+        private void RemovePicture()
+        {
             ImageSource = null;
-            imgBox.Source = null;
+            imgBox.Source = _logo;
         }
     }
 }

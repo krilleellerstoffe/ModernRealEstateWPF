@@ -2,6 +2,7 @@
 
 using System.Xml.Serialization;
 using UtilitiesLib;
+using ModernRealEstateDAL;
 
 namespace ModernRealEstateBLL
 {
@@ -95,11 +96,13 @@ namespace ModernRealEstateBLL
         //
         public bool BinarySerialize(string fileName)
         {
-            throw new NotImplementedException();
+            return MRESerializer.BinarySerialize(this, fileName);
+
         }
-        public bool BinaryDeSerialize(string fileName)
+        public IListManager<T> BinaryDeSerialize(string fileName)
         {
-            throw new NotImplementedException();
+            return (ListManager<T>) MRESerializer.BinaryDeserialize(this, fileName);
+            
         }
         public bool XMLSerialize(string fileName)
         {

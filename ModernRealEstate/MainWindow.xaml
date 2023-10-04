@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ModernRealEstate"
         mc:Ignorable="d"
         Title="Modern Real Estate by Christopher O'Driscoll" Height="500" Width="1000" MinWidth="1000" MinHeight="500" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="CanMinimize">
+
     <Grid Background="#FFF0F0F0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -14,7 +15,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -55,6 +56,15 @@
             <Label Content="Estate Objects" Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <Label Grid.Column="1" Content="Filter" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Grid.Row="1"/>
         </Grid>
-
+        <Menu Grid.Column="1">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="menuNew" Header="_New" Click="menuNew_Click"/>
+                <MenuItem x:Name="menuOpen" Header="_Open" Click="menuOpen_Click"/>
+                <MenuItem x:Name="menuSave" Header="_Save" Click="menuSave_Click"/>
+                <MenuItem x:Name="menuSaveAs" Header="_SaveAs" Click="menuSaveAs_Click" />
+                <Separator />
+                <MenuItem x:Name="menuExit" Header="_Exit" Click="menuExit_Click"/>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>

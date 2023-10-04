@@ -1,6 +1,9 @@
-﻿using ModernRealEstateBLL;
+﻿using Microsoft.Win32;
+using ModernRealEstateBLL;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -14,7 +17,7 @@ namespace ModernRealEstate
     {
         private EstateManager _manager;
         private Estate _selectedEstate;
-        private string _filePath;
+        private string? _filePath;
         private Dictionary<EstateTypes, bool> _filter;
 
         public MainWindow()
@@ -140,6 +143,98 @@ namespace ModernRealEstate
             }
             AddEditWindow addEditWindow = new AddEditWindow(_selectedEstate, this);
             addEditWindow.Show();
+        }
+
+        private void menuNew_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Start from fresh?\n\nAny information not saved will be lost!!", "Confirm new", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                _manager = new EstateManager();
+                _filePath = null;
+                _filter.Clear();
+                UpdateList();
+            }
+        }
+
+        private void menuOpen_Click(object sender, RoutedEventArgs e)
+        {
+            Open();
+        }
+
+        private void menuSave_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void menuSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAs();
+        }
+
+        private bool SaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "DAT files (*.dat)|*.dat"
+            };
+            if (sfd.ShowDialog() == true)
+            {
+                if (sfd.FileName != "")
+                {
+                    return Save(sfd.FileName);
+                }
+            }
+            return false;
+        }
+
+        public bool Save()
+        {
+            if (string.IsNullOrEmpty(_filePath))
+            {
+                return SaveAs();
+            }
+            return Save(_filePath);
+        }
+        private bool Save(string filePath)
+        {
+            try
+            {
+                _manager.BinarySerialize(filePath);
+                MessageBox.Show(_filePath + " saved successfully", "Success", MessageBoxButton.OK);
+                _filePath = filePath;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(_filePath + " could not be saved\n" + ex.Message, "Failed", MessageBoxButton.OK);
+                return false;
+            }
+
+        }
+        private void Open()
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "DAT files (*.dat)|*.dat"
+            };
+            if (ofd.ShowDialog() == true)
+            {
+                try
+                {
+                    _manager = (EstateManager) _manager.BinaryDeSerialize(ofd.FileName);
+                    _filePath = ofd.FileName;
+                    UpdateList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(_filePath + " could not be opened\n" + ex.Message, "Failed", MessageBoxButton.OK);                   
+                }
+            }
+        }
+        private void menuExit_Click(object sender, RoutedEventArgs e)
+        {
+            //confirm close
+            this.Close();
         }
     }
 }

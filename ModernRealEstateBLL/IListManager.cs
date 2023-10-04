@@ -14,7 +14,7 @@ namespace ModernRealEstateBLL
         string[] ToStringArray();
         List<string> ToStringList();
         bool BinarySerialize(string fileName);
-        bool BinaryDeSerialize(string fileName);
+        IListManager<T> BinaryDeSerialize(string fileName);
         bool XMLSerialize(string fileName);
     }
 }
