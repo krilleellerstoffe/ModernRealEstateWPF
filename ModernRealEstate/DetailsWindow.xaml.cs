@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using UtilitiesLib;
 
 namespace ModernRealEstate
 {
@@ -221,7 +222,7 @@ namespace ModernRealEstate
             }
             //set address and size regardless of estate type
             _newEstateObject.Address = CreateAddress();
-            _newEstateObject.Size = int.Parse(txtSize.Text);
+            _newEstateObject.Size = txtSize.Text.ConvertStringToInteger();
             //add ownership type and room count if residential
             if (_newEstateObject is Residential)
             {
