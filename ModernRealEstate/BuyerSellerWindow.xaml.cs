@@ -1,19 +1,7 @@
 ﻿using ModernRealEstateBLL;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ModernRealEstate
 {
@@ -39,12 +27,13 @@ namespace ModernRealEstate
         }
         private void SetName(Person person)
         {
-            txtFirstName.Text = string.IsNullOrEmpty(person.FirstName) ? "": person.FirstName;
+            txtFirstName.Text = string.IsNullOrEmpty(person.FirstName) ? "" : person.FirstName;
             txtLastName.Text = string.IsNullOrEmpty(person.LastName) ? "" : person.LastName;
         }
         private void SetPayment(Payment payment)
         {
-            if (payment == null) {
+            if (payment == null)
+            {
                 SetControlsForPaymentType(PaymentTypes.None);
                 return;
             }
@@ -79,7 +68,7 @@ namespace ModernRealEstate
         }
         private void PaymentControlsVisibility(bool accName, bool accNumber, bool accEmail)
         {
-            lblAccName.Visibility = accName ? Visibility.Visible: Visibility.Collapsed;
+            lblAccName.Visibility = accName ? Visibility.Visible : Visibility.Collapsed;
             txtAccName.Visibility = accName ? Visibility.Visible : Visibility.Collapsed;
 
             lblAccNum.Visibility = accNumber ? Visibility.Visible : Visibility.Collapsed;
@@ -116,7 +105,7 @@ namespace ModernRealEstate
             _person.FirstName = txtFirstName.Text;
             _person.LastName = txtLastName.Text;
             _person.PaymentDetails = CreatePaymentDetails();
-            
+
         }
 
         private Payment CreatePaymentDetails()

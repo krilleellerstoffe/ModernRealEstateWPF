@@ -63,6 +63,10 @@
                 <MenuItem x:Name="menuSave" Header="_Save" Click="menuSave_Click"/>
                 <MenuItem x:Name="menuSaveAs" Header="_SaveAs" Click="menuSaveAs_Click" />
                 <Separator />
+                <MenuItem Header="XML">
+                    <MenuItem x:Name="xmlOpen" Header="_Import from XML file" Click="xmlOpen_Click"/>
+                    <MenuItem x:Name="xmlSave" Header="_Export to XML file" Click="xmlSave_Click"/>
+                </MenuItem>
                 <MenuItem x:Name="menuExit" Header="_Exit" Click="menuExit_Click"/>
             </MenuItem>
         </Menu>

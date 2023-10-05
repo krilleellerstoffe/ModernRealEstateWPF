@@ -2,8 +2,6 @@
 using ModernRealEstateBLL;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -225,13 +223,13 @@ namespace ModernRealEstate
             {
                 try
                 {
-                    _manager = (EstateManager) _manager.BinaryDeSerialize(ofd.FileName);
+                    _manager = (EstateManager)_manager.BinaryDeSerialize(ofd.FileName);
                     _filePath = ofd.FileName;
                     UpdateList();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(_filePath + " could not be opened\n" + ex.Message, "Failed", MessageBoxButton.OK);                   
+                    MessageBox.Show(_filePath + " could not be opened\n" + ex.Message, "Failed", MessageBoxButton.OK);
                 }
             }
         }
@@ -239,6 +237,43 @@ namespace ModernRealEstate
         {
             //confirm close
             this.Close();
+        }
+
+        private void xmlOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "XML files (*.xml)|*.xml"
+            };
+            if (ofd.ShowDialog() == true)
+            {
+                OpenXML(ofd.FileName);
+                UpdateList();
+            }
+        }
+
+        private void OpenXML(string fileName)
+        {
+            _manager = (EstateManager)_manager.XMLDeserialize(fileName);
+        }
+
+        private void xmlSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "XML files (*.xml)|*.xml"
+            };
+            if (sfd.ShowDialog() == false) return;
+            if (sfd.FileName == "") return;
+            try
+            {
+                _manager.XMLSerialize(sfd.FileName);
+                MessageBox.Show(sfd.FileName + " saved successfully", "Success", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(_filePath + " could not be saved\n" + ex.Message, "Failed", MessageBoxButton.OK);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ public static class StringUtilities
     {
         int result = ConvertStringToInteger(str);
 
-        return (min <= result && result<= max) ? result : throw new Exception("Integer outside of range");
+        return (min <= result && result <= max) ? result : throw new Exception("Integer outside of range");
     }
     public static decimal ConvertStringToDecimal(this string? str)
     {

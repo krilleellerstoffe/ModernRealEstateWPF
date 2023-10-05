@@ -23,12 +23,10 @@ namespace ModernRealEstateBLL
         private Payment payment;
         private EstateTypes estateType;
         private string imageSource;
-        private int coverPicture;
 
         protected Estate()
         {
             estateID = Guid.NewGuid();
-            coverPicture = 0;
         }
 
         //each new estate object must have an address and size, a unique ID is created automatically, as is the EstateType by it's constructor
@@ -40,8 +38,6 @@ namespace ModernRealEstateBLL
         //following attributes can be empty
         [XmlElement(IsNullable = false)]
         public string ImageSource { get => imageSource; set => imageSource = value; }
-        [XmlElement(IsNullable = false)]
-        public int CoverPicture { get => coverPicture; set => coverPicture = value; }
         [XmlElement(IsNullable = false)]
         public Buyer Buyer { get => buyer; set => buyer = value; }
         [XmlElement(IsNullable = false)]

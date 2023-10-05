@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace ModernRealEstateDAL
 {
@@ -13,7 +15,7 @@ namespace ModernRealEstateDAL
             }
             return true;
         }
-        public static object BinaryDeserialize(object obj, string  filePath)
+        public static object BinaryDeserialize(object obj, string filePath)
         {
             using (FileStream fs = File.Open(filePath, FileMode.Open))
             {
@@ -23,9 +25,46 @@ namespace ModernRealEstateDAL
             return obj;
         }
 
-        public static bool XMLSerialize(Object objToSerialize, string filePath)
+        public static bool XMLSerialize(object obj, string filePath)
         {
-            return true;
+            try
+            {
+                XmlSerializer xs = new XmlSerializer(obj.GetType());
+                using (TextWriter writer = new StreamWriter(filePath))
+                {
+                    xs.Serialize(writer, obj);
+                    writer.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        //TODO Fix this type casting!!
+        public static object XMLDeserialize(object obj, string filePath)
+        {
+            try
+            {
+                Debug.WriteLine(obj.GetType());
+                Type type = obj.GetType();
+                object deserializedObject;
+                XmlSerializer xs = new XmlSerializer(type);
+                using (Stream reader = new FileStream(filePath, FileMode.Open))
+                {
+                    deserializedObject = xs.Deserialize(reader);
+                    reader.Close();
+                    return deserializedObject;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
     }
 }

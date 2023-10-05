@@ -1,5 +1,7 @@
 ﻿// Christopher O'Driscoll
 
+using ModernRealEstateDAL;
+
 namespace ModernRealEstateBLL
 {
     [Serializable]

@@ -1,8 +1,7 @@
 ﻿// Christopher O'Driscoll
 
-using System.Xml.Serialization;
-using UtilitiesLib;
 using ModernRealEstateDAL;
+using System.Xml.Serialization;
 
 namespace ModernRealEstateBLL
 {
@@ -101,12 +100,16 @@ namespace ModernRealEstateBLL
         }
         public IListManager<T> BinaryDeSerialize(string fileName)
         {
-            return (ListManager<T>) MRESerializer.BinaryDeserialize(this, fileName);
-            
+            return (ListManager<T>)MRESerializer.BinaryDeserialize(this, fileName);
+
         }
         public bool XMLSerialize(string fileName)
         {
-            throw new NotImplementedException();
+            return MRESerializer.XMLSerialize(this, fileName);
+        }
+        public IListManager<T> XMLDeserialize(string fileName)
+        {
+            return (ListManager<T>)MRESerializer.XMLDeserialize(this, fileName);
         }
     }
 }

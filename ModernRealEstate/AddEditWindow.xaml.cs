@@ -1,22 +1,9 @@
 ﻿using Microsoft.Win32;
 using ModernRealEstateBLL;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ModernRealEstate
 {
@@ -92,16 +79,16 @@ namespace ModernRealEstate
         {
             //open new dialog to edit details, include estate object if exists
 
-            DetailsWindow detailsWindow = (_estate == null) ? new DetailsWindow(this): new DetailsWindow(this, _estate);
+            DetailsWindow detailsWindow = (_estate == null) ? new DetailsWindow(this) : new DetailsWindow(this, _estate);
             detailsWindow.Show();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (_estate != null)
             {
                 _estate.ImageSource = _imageSource;
-                
+
                 _mainWindow.AddEstate(_estate);
                 this.Close();
                 return;
@@ -138,7 +125,7 @@ namespace ModernRealEstate
                 imgBox.Source = new BitmapImage(new Uri(filename));
                 _imageSource = filename;
                 return true;
-            }          
+            }
             catch (Exception ex)
             {
                 // Handle any download exceptions

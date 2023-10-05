@@ -1,18 +1,9 @@
 ﻿using ModernRealEstateBLL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ModernRealEstate
 {
@@ -30,21 +21,21 @@ namespace ModernRealEstate
 
         public Seller? Seller
         {
-            get => _seller; 
+            get => _seller;
             set
             {
                 _seller = value;
-                txtBlSeller.Text = ((Seller) value).ToString();
+                txtBlSeller.Text = ((Seller)value).ToString();
             }
         }
 
         public Buyer? Buyer
         {
-            get => _buyer; 
+            get => _buyer;
             set
             {
                 _buyer = value;
-                txtBlBuyer.Text = ((Buyer) value).ToString();
+                txtBlBuyer.Text = ((Buyer)value).ToString();
             }
         }
         public AddEditWindow ParentWindow { get => _parentWindow; set => _parentWindow = value; }
@@ -88,7 +79,7 @@ namespace ModernRealEstate
             cBoxCountries.ItemsSource = Enum.GetValues(typeof(Countries));
             cBoxType.ItemsSource = Enum.GetValues(typeof(EstateTypes));
             cBoxOwnership.ItemsSource = Enum.GetValues(typeof(Ownership));
-            for(int i = 1; i < 10; i++)
+            for (int i = 1; i < 10; i++)
             {
                 cBoxRooms.Items.Add(i.ToString());
             }
@@ -97,7 +88,7 @@ namespace ModernRealEstate
 
         private void btnSeller_Click(object sender, RoutedEventArgs e)
         {
-            BuyerSellerWindow window = new BuyerSellerWindow(this, Seller != null ? Seller: new Seller());
+            BuyerSellerWindow window = new BuyerSellerWindow(this, Seller != null ? Seller : new Seller());
             window.Show();
         }
         private void btnBuyer_Click(object sender, RoutedEventArgs e)
@@ -108,7 +99,7 @@ namespace ModernRealEstate
 
         private void cBoxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (cBoxType.SelectedItem) 
+            switch (cBoxType.SelectedItem)
             {
                 case EstateTypes.Apartment:
                 case EstateTypes.Townhouse:
@@ -232,7 +223,7 @@ namespace ModernRealEstate
             _newEstateObject.Address = CreateAddress();
             _newEstateObject.Size = int.Parse(txtSize.Text);
             //add ownership type and room count if residential
-            if(_newEstateObject is Residential)
+            if (_newEstateObject is Residential)
             {
                 ((Residential)_newEstateObject).Ownership = (Ownership)cBoxOwnership.SelectedItem;
                 ((Residential)_newEstateObject).Rooms = (string)cBoxRooms.SelectedItem;
