@@ -48,7 +48,6 @@ namespace ModernRealEstateDAL
         {
             try
             {
-                Debug.WriteLine(obj.GetType());
                 Type type = obj.GetType();
                 object deserializedObject;
                 XmlSerializer xs = new XmlSerializer(type);
